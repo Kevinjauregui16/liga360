@@ -13,8 +13,18 @@
     <div class="min-h-screen bg-gray-100">
         <nav class="bg-white border-b border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 items-center">
-                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Liga360') }}</a>
+                <div class="flex h-16 items-center justify-between">
+                    <a href="{{ auth()->check() ? route('dashboard') : url('/') }}" class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Liga360') }}</a>
+
+                    @auth
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-600">{{ auth()->user()->name }}</span>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="text-sm text-gray-600 underline hover:text-gray-900">Cerrar sesión</button>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </nav>
