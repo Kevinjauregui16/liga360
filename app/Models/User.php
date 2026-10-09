@@ -18,6 +18,16 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Cliente al que pertenece el usuario (null = usuario global).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

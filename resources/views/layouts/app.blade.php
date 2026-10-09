@@ -17,6 +17,10 @@
                     <a href="{{ auth()->check() ? route('dashboard') : url('/') }}" class="text-lg font-semibold text-gray-800">{{ config('app.name', 'Liga360') }}</a>
 
                     @auth
+                        <div class="flex flex-1 items-center gap-6 ms-10">
+                            <a href="{{ route('clients.index') }}" class="text-sm font-medium {{ request()->routeIs('clients.*') ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700' }}">Clientes</a>
+                        </div>
+
                         <div class="flex items-center gap-4">
                             <span class="text-sm text-gray-600">{{ auth()->user()->name }}</span>
                             <form method="POST" action="{{ route('logout') }}">
